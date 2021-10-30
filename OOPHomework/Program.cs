@@ -17,11 +17,12 @@ namespace OOPHomework
             NormalAccount[] nac = new NormalAccount[iter];
             HardAccount[] hac = new HardAccount[iter];
             NightmareAccount[] nmac = new NightmareAccount[iter];
-
+            IAccount[] iAccs = new IAccount[iter * 4];
+            
             for (int i = 0; i < iter; i++)
             {
                 lac[i] = new LightAccount();
-                lac[i].SetId(i);
+                lac[i].SetId(i + 1);
 
                 if (i % 2 == 0)
                 {
@@ -49,18 +50,28 @@ namespace OOPHomework
                 nmac[i].Withdraw((decimal)Math.Pow(i + 10, 2));
             }
 
-            foreach (var item in lac) Console.WriteLine($"Account #: {item.GetId()}\t\tbalance : {item.GetBalance()}\t\tAccount Type : {item.GetAccType()}");
-            foreach (var item in nac) Console.WriteLine($"Account #: {item.GetId()}\t\tbalance : {item.GetBalance()}\t\tAccount Type : {item.GetAccType()}");
-            foreach (var item in hac) Console.WriteLine($"Account #: {item.GetId()}\t\tbalance : {item.GetBalance()}\t\tAccount Type : {item.GetAccType()}");
-            foreach (var item in nmac)
+            for (int j = 0, i = 0; i < iAccs.Length; j++, i += iter)
             {
-                string temp = "";
-                if (item.AccType == AccountType.Credit)
-                {
-                    temp = $"\t\tCredit limit : {item._limit}";
-                }
-                Console.WriteLine($"Account #: {item.GetId()}\t\tbalance : {item.Balance}\t\tAccount Type : {item.AccType}{temp}");
+                iAccs[i] = lac[j];
+                iAccs[i+1] = nac[j];
+                iAccs[i+2] = hac[j];
+                iAccs[i+3] = nmac[j];
             }
+
+            foreach (var item in iAccs)
+            {
+                item.AccountInfo();
+                if (item.GetAccType() == AccountType.Credit) item.SetLimit(item.GetBalance());
+                Console.WriteLine();
+            }
+
+            nmac[0].Transfer(nmac[1],25000);
+            nmac[0].Transfer(nmac[1], 2500);
+            for (int i = 0; i < iAccs.Length; i++)            
+                if (iAccs[i].GetAccType()==AccountType.Credit)                
+                    iAccs[i].Withdraw(iAccs[i].GetBalance() + (iAccs[i].GetBalance() / 2));
+                
+            
         }
     }
 }
