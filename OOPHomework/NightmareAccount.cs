@@ -9,6 +9,7 @@ namespace OOPHomework
         public decimal Balance { get; private set; }
         public AccountType AccType { get; private set; }
         public decimal _limit { get; private set; } = 0;
+        public decimal arrears { get; private set; } = 0;
         public NightmareAccount() { }
         public NightmareAccount(decimal sum) : this() => Balance = sum;
         public NightmareAccount(AccountType accType, decimal limit = 0) : this((decimal)0)
@@ -36,23 +37,25 @@ namespace OOPHomework
 
         public void Withdraw(decimal sum)
         {
-            if (AccType == AccountType.Credit)
+            if (Balance >= sum)
             {
-                if (Balance + _limit - sum > 0)
-                {
-                    Balance -= sum;
-                    Console.WriteLine($"Acc : {GetId()}\tWithdraw {sum} successful, total balance : {Balance}");
-                }
-                else Console.WriteLine($"Not enough to withdraw from balance\n Balance : {Balance}\nCredit limit : {_limit}");
+                Balance -= sum;
+                Console.WriteLine($"Acc : {GetId()}\tWithdraw {sum} successful, total balance : {Balance}");
             }
-            else if (AccType == AccountType.Debit)
+            else if (Balance < sum && AccType == AccountType.Credit)
             {
-                if (Balance - sum > 0)
+                if (Balance + _limit >= sum)
                 {
-                    Balance -= sum;
-                    Console.WriteLine($"Acc : {GetId()}\tWithdraw {sum} successful, total balance : {Balance}");
+                    Balance = 0;
+                    _limit -= sum;
+                    arrears += sum;
+                    Console.WriteLine($"Acc : {GetId()}\tWithdraw {sum} successful, total balance : {Balance}\tCredit limit : {_limit}");
                 }
-                else Console.WriteLine($"Not enough to withdraw from balance\n Balance : {Balance}");
+                else Console.WriteLine($"Not enough to withdraw from balance\t Balance : {Balance}\tCredit limit : {_limit}");
+            }
+            else
+            {
+                Console.WriteLine($"Not enough to withdraw from balance\t Balance : {Balance}");
             }
         }
     }

@@ -1,6 +1,7 @@
-﻿namespace OOPHomework
+﻿using System;
+namespace OOPHomework
 {
-    class HardAccount : LightAccount
+    class HardAccount
     {
         private static int counter = 0;
         private int _id;
@@ -21,10 +22,18 @@
             counter++;
             _id = counter;
         }
-        public new string GetId() => $"HA{_id.ToString("D8")}";
-        //public decimal GetBalance() => _balance;
-        //public AccountType GetAccType() => _accType;
-        //public void Enrollment(decimal sum) => _balance += sum;
-        //public void Withdraw(decimal sum) => _balance -= sum;
+        public string GetId() => $"HA{_id.ToString("D8")}"; public void Enrollment(decimal sum)
+        {
+            this._balance += sum;
+            Console.WriteLine($"Acc : {GetId()}\tEnroll {sum} successful, total balance : {_balance}");
+        }
+
+        public void Withdraw(decimal sum)
+        {
+            this._balance -= sum;
+            Console.WriteLine($"Acc : {GetId()}\tWithdraw {sum} successful, total balance : {_balance}");
+        }
+        public decimal GetBalance() => _balance;
+        public AccountType GetAccType() => _accType;
     }
 }

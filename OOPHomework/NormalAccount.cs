@@ -1,6 +1,7 @@
-﻿namespace OOPHomework
+﻿using System;
+namespace OOPHomework
 {
-    class NormalAccount : LightAccount
+    class NormalAccount
     {
         private static int counter = 0;
         private readonly int _id;
@@ -13,10 +14,19 @@
             _accType = accType;
         }
         public void ChangeAccType(AccountType accType) => _accType = accType;
-        public new string GetId() => $"NA{_id.ToString("D8")}";
-        //public void Enrollment(decimal sum) => _balance += sum;
-        //public void Withdraw(decimal sum) => _balance -= sum;
-        //public decimal GetBalance() => _balance;
-        //public AccountType GetAccType() => _accType;
+        public string GetId() => $"NA{_id.ToString("D8")}";
+        public void Enrollment(decimal sum)
+        {
+            this._balance += sum;
+            Console.WriteLine($"Acc : {GetId()}\tEnroll {sum} successful, total balance : {_balance}");
+        }
+
+        public void Withdraw(decimal sum)
+        {
+            this._balance -= sum;
+            Console.WriteLine($"Acc : {GetId()}\tWithdraw {sum} successful, total balance : {_balance}");
+        }
+        public decimal GetBalance() => _balance;
+        public AccountType GetAccType() => _accType;
     }
 }
