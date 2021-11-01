@@ -10,13 +10,13 @@ namespace OOPHomework
         private decimal _balance { get; set; }
         private decimal _limit { get; set; } = 0;
         private decimal _arrears { get; set; } = 0;
-        
+
         public AccountType AccType { get; private set; }
         public string Id { get => $"NMA_{_id.ToString("D8")}"; }
         public string Balance { get => _balance.ToString("C2", CultureInfo.CreateSpecificCulture("en-US")); }
         public string Limit { get => _limit.ToString("C2", CultureInfo.CreateSpecificCulture("en-US")); }
         public string Arrears { get => _arrears.ToString("C2", CultureInfo.CreateSpecificCulture("en-US")); }
-        
+
         public NightmareAccount() { }
         public NightmareAccount(decimal sum) : this() => _balance = sum;
         public NightmareAccount(AccountType accType, decimal limit = 0) : this((decimal)0)
@@ -103,13 +103,13 @@ namespace OOPHomework
         public decimal GetBalance() => _balance;
     }
 }
-        //public void IncreaseLimit(decimal sum)
-        //{
-        //    if (AccType == AccountType.Credit) _limit += sum;
-        //    else Console.WriteLine($"Account type not support credit limit.");
-        //}
-        //public void DecreaseLimit(decimal sum)
-        //{
-        //    if (_limit >= sum) _limit -= sum;
-        //    else Console.WriteLine("Credit Limit to low");
-        //}
+//public void IncreaseLimit(decimal sum)
+//{
+//    if (AccType == AccountType.Credit) _limit += sum;
+//    else Console.WriteLine($"Account type not support credit limit.");
+//}
+//public void DecreaseLimit(decimal sum)
+//{
+//    if (_limit >= sum) _limit -= sum;
+//    else Console.WriteLine("Credit Limit to low");
+//}

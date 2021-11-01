@@ -21,7 +21,7 @@ namespace OOPHomework
             _id = counter;
             _accType = accType;
         }
-        
+
         public string GetId() => $"NA_{_id.ToString("D8")}";
         public decimal GetBalance() => _balance;
         public AccountType GetAccType() => _accType;
