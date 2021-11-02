@@ -1,38 +1,40 @@
 ﻿using System;
+using System.Text;
+using System.IO;
 
 namespace OOPHomework
 {
+    public enum AccountType
+    {
+        Debit,
+        Credit
+    }
+
     class Program
     {
-        public enum AccountType
-        {
-            Debit,
-            Credit
-        }
-        class LightAccount
-        {
-            private int _id;
-            private decimal _balance;
-            private AccountType _accType;
-
-            public void SetId(int id) => _id = id;
-            public int GetId() => _id;
-            public void Enrollment(decimal sum) => _balance += sum;
-            public void Withdraw(decimal sum) => _balance -= sum;
-            public decimal GetBalance() => _balance;
-            public void SetAccType(AccountType accType) => _accType = accType;
-            public AccountType GetAccType() => _accType;
-        }
-
         static void Main(string[] args)
         {
-            LightAccount la = new LightAccount();
+            MailFinding.Run();
+            Console.WriteLine("Читаем строки из сгенерированного файла\n");
+            MailFinding.FileToConsole("test.txt", 5, 8);
+            Console.WriteLine("\nЧитаем строки из итогового файла\n");
+            MailFinding.FileToConsole("testOutput.txt", 5, 8);
 
-            la.SetId(1);
-            la.SetAccType(AccountType.Debit);
-            la.Enrollment(1000);
-            la.Withdraw(100);
-            Console.WriteLine($"Account #: {la.GetId()}\nbalance : {la.GetBalance()}\nAccount Type : {la.GetAccType()}");
+            Console.WriteLine("\n Запуска теста для бановских счетов");
+
+            BankAccountClasses.Run();
+        }
+
+        /// <summary>
+        /// Методд раззворота строки.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        static string Reverse(string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = str.Length - 1; i >= 0; i--) sb.Append(str[i]);
+            return sb.ToString();
         }
     }
 }
