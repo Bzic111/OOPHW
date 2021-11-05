@@ -43,7 +43,6 @@ namespace OOPHomework
                 }
             }
         }
-
         /// <summary>
         /// Метод поиска по паттерну эл.почты.
         /// </summary>
@@ -55,7 +54,6 @@ namespace OOPHomework
                 if (Regex.IsMatch(item, @"^[^@\s]+@[^@\s]+\.[^@\s]+$")) s = item;
                 else s = null;
         }
-
         /// <summary>
         /// Вывод определённых строк файла в консоль
         /// </summary>
@@ -71,7 +69,6 @@ namespace OOPHomework
                     else sr.ReadLine();
             }
         }
-
         /// <summary>
         /// Генерация строки для файла.
         /// </summary>
@@ -85,7 +82,6 @@ namespace OOPHomework
                     sw.WriteLine($"{WordGenerator(rnd.Next(5, 10))} {WordGenerator(rnd.Next(5, 10))} {WordGenerator(rnd.Next(5, 10))} & {GenerateMail(rnd.Next(5, 10))}");
             }
         }
-
         /// <summary>
         /// Генератор слова.
         /// </summary>
@@ -103,7 +99,6 @@ namespace OOPHomework
 
             return new(chr);
         }
-
         /// <summary>
         /// Генератор слова, похожего на адрес электронной почты
         /// </summary>
