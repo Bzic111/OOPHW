@@ -1,32 +1,21 @@
 ﻿global using System;
-global using OOPHomework;
+global using System.Globalization;
+global using System.Collections.Generic;
 
-Rational r1 = new(5, 6);
-Rational r2 = (5, 7);
+NightmareAccount na1 = new NightmareAccount(AccountType.Debit);
+NightmareAccount na2 = new NightmareAccount(AccountType.Debit);
+NightmareAccount na3 = new NightmareAccount(AccountType.Debit);
+NightmareAccount na4 = new NightmareAccount(AccountType.Debit);
 
-string s1 = r1 + r2;
-decimal dec = r1 / r2;
-float f1 = r1 + r2;
-double d = r1 + f1 + dec;
-Rational r3 = s1 + r1 + r2 + f1 + d + dec;
-Rational r4 = (Rational)5 + (2, 5);
-int i1 = -r3;
-(int, int) v = r1;
-Console.WriteLine(r4.ToString());
-Console.WriteLine(v);
-Console.WriteLine(i1);
-Console.WriteLine((string)r3);
-Console.WriteLine(s1);
-Console.WriteLine($"{r1}");
-Console.WriteLine(r2.ToString());
-Console.WriteLine($"{r1} + {r2} = {r1 + r2}");
-Console.WriteLine($"{r1} - {r2} = {r1 - r2}");
-Console.WriteLine($"{r1} * {r2} = {r1 * r2}");
-Console.WriteLine($"{r1} / {r2} = {r1 / r2}");
-Console.WriteLine($"{r1} == {r2} is {r1 == r2}");
-Console.WriteLine($"{r1} != {r2} is {r1 != r2}");
-Console.WriteLine($"{r1} > {r2} is {r1 > r2}");
-Console.WriteLine($"{r1} < {r2} is {r1 < r2}");
-Console.WriteLine($"{r1} + (float){1.5f} = {r1 + 1.5f}");
-Console.WriteLine($"{r2} * (string)\"2/5\" = {r2 * "2/5"}");
-Console.WriteLine($"{r1} * {r2} ToDecimal = {(decimal)(r1 * r2)}");
+List<IAccount> lna = new List<IAccount> { na1, na2, na3, na4 };
+foreach (var item in lna)
+{
+    item.Enrollment(10000);
+    Console.WriteLine(item);
+    Console.WriteLine(item.GetHashCode());
+}
+if (na1==na2) na1.Transfer(na2, 1000);
+Console.WriteLine(na1.GetAllOperations());
+Console.WriteLine(na2.GetAllOperations());
+Console.WriteLine(na3.GetAllOperations());
+Console.WriteLine(na4.GetAllOperations());
