@@ -2,6 +2,7 @@
 global using System.Globalization;
 global using System.Collections.Generic;
 global using OOPHomework;
+using OOPHomework.Figure;
 
 ACoder coder = new();
 BCoder coder2 = new();

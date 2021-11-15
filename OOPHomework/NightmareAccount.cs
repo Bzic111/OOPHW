@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using OOPHomework.Enum;
+using System.Text;
 
 /// <summary>Расширенный банковский счёт</summary>
 class NightmareAccount : IAccount, IEquatable<NightmareAccount>

@@ -1,4 +1,5 @@
-﻿
+﻿using OOPHomework.Enum;
+namespace OOPHomework;
 /// <summary>Банковский счёт</summary>
 public interface IAccount
 {
